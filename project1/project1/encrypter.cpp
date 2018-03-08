@@ -121,14 +121,7 @@ multimap<const char, int> genKey() {
 
 	return key;
 }
-void encrypt(string toEncrypt) {
-	//generate key
-	std::multimap<const char, int> key = genKey();
-
-	//std::cout << "Is map empty?" << key.empty();
-	//DEBUG purposes, outputs the full key
-	for (multimap<const char, int>::iterator it = key.begin(); it != key.end(); ++it)
-		cout << "  [" << (*it).first << ", " << (*it).second << "]" << endl;
+void encrypt(string toEncrypt, multimap<const char, int> key) {
 
 	//encrypt using key & build encrypted input
 	string excryptedInput = "";
@@ -159,19 +152,34 @@ void encrypt(string toEncrypt) {
 	std::cout << toEncrypt << "\n\n";
 	std::cout << excryptedInput << "\n\n";
 	ofstream myfile("encrypted.txt", std::ios_base::app);
-	myfile << toEncrypt << "\n\n";
+	myfile << toEncrypt << "\n";
+	myfile << excryptedInput << "\n\n";
 	myfile.close();
 }
 
 
 bool encryptDriver(string candidates[]) {
+	//generate key
+	std::multimap<const char, int> key = genKey();
+	ofstream myfile("encrypted.txt", std::ios_base::app);
+
+	//std::cout << "Is map empty?" << key.empty();
+	//DEBUG purposes, outputs the full key
+	for (multimap<const char, int>::iterator it = key.begin(); it != key.end(); ++it) {
+		cout << "  [" << (*it).first << ", " << (*it).second << "]" << endl;
+		myfile  << "  [" << (*it).first << ", " << (*it).second << "], ";
+
+	}
+	myfile << "\n";
+	myfile.close();
 
 	string currentCandidate;
 	//std::cout << sizeof(candidates);
 	for (int i = 0; i <= 0; i++) {
-		//for (int i = 0; i <= sizeof(candidates); i++) {
-		currentCandidate = candidates[i];
-		encrypt(currentCandidate);
+		for (int i = 0; i < sizeof(candidates); i++) {
+			currentCandidate = candidates[i];
+			encrypt(currentCandidate, key);
+		}
 	}
 
 	return 0;
@@ -202,7 +210,6 @@ int main()
 	std::istreambuf_iterator<char>());
 	*/
 
-	std::cout << status;
 
 
 
