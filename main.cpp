@@ -15,15 +15,19 @@ const string candidate5 = "mammate punners octette asylum nonclinically trotters
 //For Test 2
 
 
-int main(){
-    string ciphertext, plaintext;
+int main(int argc, char* argv[]){
+    if(argc <= 1){  //No input arguements
+        string ciphertext, plaintext;
 
-    //Get input: (ciphertext)
-    cout << "Enter the ciphertext: ";
-    cin >> ciphertext;
+        //Get input: (ciphertext)
+        cout << "Enter the ciphertext: ";
+        cin >> ciphertext;
 
-    //Decrypt
+        //Decrypt
 
-    //Print output: (plaintext)
-    cout << "Plaintext: " << plaintext << endl;
+        //Print output: (plaintext)
+        cout << "Plaintext: " << plaintext << endl;
+    }
+    else{   //Input arguements
+    }
 }

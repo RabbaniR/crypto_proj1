@@ -113,27 +113,27 @@ void encryptString(string& toEncrypt, keymap* key) {
 		char c = toEncrypt[i];
 		//encryotion depends on the position of the character
 		int posn = i % key->count(c);
-			//std::cout << posn << " of " << keyCount << "  ";
+			//cout << posn << " of " << keyCount << "  ";
 		//use position to pick encryption
 		keymapItr ret = key->find(c);
-			//std::multimap<char, int>::iterator it = ret.first;
+			//multimap<char, int>::iterator it = ret.first;
 		int chosenEncryption;
 		for (int i = 0; i <= posn; ++ret) {		// it != ret.second && 
 			i++;
 			chosenEncryption = ret->second;
-			//std::cout << ' ' << chosenEncryption;
+			//cout << ' ' << chosenEncryption;
 		}
 
-		//std::cout << "chosen val: " << chosenEncryption << '\n';
+		//cout << "chosen val: " << chosenEncryption << '\n';
 
 		//build encrypted string
-		excryptedInput += std::to_string(chosenEncryption) + ",";
+		excryptedInput += to_string(chosenEncryption) + ",";
 
-		//std::cout << c << i << "\n";
+		//cout << c << i << "\n";
 	}
-	std::cout << toEncrypt << "\n\n";
-	std::cout << excryptedInput << "\n\n";
-	ofstream myfile("encrypted.txt", std::ios_base::app);
+	cout << toEncrypt << "\n\n";
+	cout << excryptedInput << "\n\n";
+	ofstream myfile("encrypted.txt", ios_base::app);
 	myfile << toEncrypt << "\n";
 	myfile << excryptedInput << "\n\n";
 	myfile.close();
@@ -141,9 +141,9 @@ void encryptString(string& toEncrypt, keymap* key) {
 
 
 bool encryptDriver(string candidates[], keymap* key) {
-	ofstream myfile("encrypted.txt", std::ios_base::app);
+	ofstream myfile("encrypted.txt", ios_base::app);
 
-	//std::cout << "Is map empty?" << key.empty();
+	//cout << "Is map empty?" << key.empty();
 	//DEBUG purposes, outputs the full key
 	for (keymapItr it = key->begin(); it != key->end(); ++it) {
 		cout << "  [" << it->first << ", " << it->second << "]" << endl;
@@ -154,11 +154,11 @@ bool encryptDriver(string candidates[], keymap* key) {
 	myfile.close();
 
 	string currentCandidate;
-	//std::cout << sizeof(candidates);
+	//cout << sizeof(candidates);
 	for (int i = 0; i <= 0; i++) {
 		for (int i = 0; i < sizeof(candidates); i++) {
 			currentCandidate = candidates[i];
-			encrypt(currentCandidate, key);
+			encryptString(currentCandidate, key);
 		}
 	}
 
