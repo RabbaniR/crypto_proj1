@@ -19,8 +19,6 @@ void genKey(keymap* key);
 
 void encryptString(const std::string& toEncrypt, keymap* key);
 
-bool encryptDriver(std::string candidates[], keymap* key);
-
 //Prints the keymap
 void printKeyMap(keymap* key);
 

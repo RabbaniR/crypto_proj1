@@ -105,20 +105,20 @@ void genKey(keymap* key) {
 	}
 }
 
-void encryptString(const string& toEncrypt, keymap* key) {
+void encryptString(const string& plaintext, keymap* key) {
 	//encrypt using key & build encrypted input
-	string excryptedInput = "";
-	for (int i = 0; i < toEncrypt.size(); i++) {
+	string ciphertext;
+	for (int i = 0; i < plaintext.size(); i++) {
 		//character iterator
-		char c = toEncrypt[i];
-		//encryotion depends on the position of the character
-		int posn = i % key->count(c);
-			//cout << posn << " of " << keyCount << "  ";
+		char c = plaintext[i];
+		//encryption depends on the position of the character
+		int keyPos = i % key->count(c);
+			//cout << keyPos << " of " << keyCount << "  ";
 		//use position to pick encryption
 		keymapItr ret = key->find(c);
 			//multimap<char, int>::iterator it = ret.first;
 		int chosenEncryption;
-		for (int i = 0; i <= posn; ++ret) {		// it != ret.second && 
+		for (int i = 0; i <= keyPos; ++ret) {		// it != ret.second && 
 			i++;
 			chosenEncryption = ret->second;
 			//cout << ' ' << chosenEncryption;
@@ -127,42 +127,21 @@ void encryptString(const string& toEncrypt, keymap* key) {
 		//cout << "chosen val: " << chosenEncryption << '\n';
 
 		//build encrypted string
-		excryptedInput += to_string(chosenEncryption) + ",";
+		ciphertext += to_string(chosenEncryption) + ",";
 
 		//cout << c << i << "\n";
 	}
-	cout << toEncrypt << "\n\n";
-	cout << excryptedInput << "\n\n";
+
+    //Delete the last comma at the end of the ciphertext
+    ciphertext.erase(ciphertext.size()-1);
+
+    //Print plain and ciphertext
+	cout << plaintext << "\n\n";
+	cout << ciphertext << "\n\n";
 	//ofstream myfile("encrypted.txt", ios_base::app);
-	//myfile << toEncrypt << "\n";
-	//myfile << excryptedInput << "\n\n";
+	//myfile << plaintext << "\n";
+	//myfile << ciphertext << "\n\n";
 	//myfile.close();
-}
-
-
-bool encryptDriver(string candidates[], keymap* key) {
-	//ofstream myfile("encrypted.txt", ios_base::app);
-
-	//cout << "Is map empty?" << key.empty();
-	//DEBUG purposes, outputs the full key
-	for (keymapItr it = key->begin(); it != key->end(); ++it) {
-		cout << "  [" << it->first << ", " << it->second << "]" << endl;
-		//myfile  << "  [" << it->first << ", " << it->second << "], ";
-
-	}
-	//myfile << "\n";
-	//myfile.close();
-
-	string currentCandidate;
-	//cout << sizeof(candidates);
-	for (int i = 0; i <= 0; i++) {
-		for (int i = 0; i < sizeof(candidates); i++) {
-			currentCandidate = candidates[i];
-			encryptString(currentCandidate, key);
-		}
-	}
-
-	return 0;
 }
 
 void printKeyMap(keymap* key){
