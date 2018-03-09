@@ -12,94 +12,8 @@
 using namespace std;
 
 
-//std::multimap<char, int> reverseGenKey(vector<tuple<char, int>> keyspace, string ciphertxt) {
-//	//////sort keyspace so it's arranged in order
-//	////std::sort(keyspace.begin(), keyspace.end());
-//	////for (int a = 0; a < keyspace.size(); a++) {
-//	////	cout << get<0>(keyspace[a]) << ",";
-//	////	cout << get<1>(keyspace[a]) << "\n";
-//	////}
-//	multimap<char, int> key;
-//	std::multimap<char, int>::iterator it;
-//	std::string delimiter = ",";
-//	size_t pos = 0;
-//	std::string token;
-//	int i = 0;
-//	while ((pos = ciphertxt.find(delimiter)) != std::string::npos) {
-//		char currentChar = get<0>(keyspace[i]);
-//		token = ciphertxt.substr(0, pos);
-//		it = key.find(currentChar);
-//
-//		//cout << stoi(token) << " is: " << currentChar << " at posn " << get<1>(keyspace[i]) << "\n";
-//		////std::cout << token << std::endl;
-//
-//		//first check its not empty
-//		if (key.size() == 0) {	//key is totally empty
-//			key.insert(pair<char, int>(currentChar, stoi(token)));
-//		}
-//
-//
-//		else {
-//
-//			if (it != key.end()) {	//found the character in the map
-//				//then check that we havent already added this value
-//				if ((*it).second == stoi(token)) {
-//					i++;
-//					continue;
-//				}
-//
-//				int offset = get<1>(keyspace[i]);
-//				//ensure iterator is in right position
-//				for (int j = 0; j < offset; j++) {
-//
-//					if ((*it).first != currentChar) {	//means we've moved too far
-//						it--;
-//						break;
-//					}
-//					it++;
-//				}
-//
-//					key.insert(it, pair<char, int>(currentChar, stoi(token)));
-//			}
-//			else {
-//				key.insert(pair<char, int>(currentChar, stoi(token)));
-//			}
-//
-//		}
-//		
-//		ciphertxt.erase(0, pos + delimiter.length());
-//		i++;
-//	}
-//
-//	//std::cout << ciphertxt << std::endl;
-//	////for (int i = 0; i < ciphertxt.size(); i++) {
-//	////	char c = ciphertxt[i];
-//
-//	////	//key.insert(pair< char, int>(c, randomlySelected));
-//	////}
-//
-//	//DEBUG verif key is legit
-//	for (multimap<const char, int>::iterator x = key.begin(); x != key.end(); ++x) {
-//		cout << "  [" << (*x).first << ", " << (*x).second << "] ";
-//
-//	}
-//	cout << "\n aight we done";
-//
-//	return key;
-//}
-
-string testKey(vector<tuple<char, int, int>> key, string ciphertxt) {
+string testKey(vector<tuple<char, int, int>> key) {
 	string deciphered = "This is the correct plaintext!";
-	//std::string delimiter = ",";
-	//size_t pos = 0;
-	//std::string token;
-	//int posn = 0; //track position of 
-	//while ((pos = ciphertxt.find(delimiter)) != std::string::npos) {
-	//	token = ciphertxt.substr(0, pos);
-	//	 
-
-	//	ciphertxt.erase(0, pos + delimiter.length());
-	//}
 
 	//check that key is legal
 	int keyspace = key.size();
@@ -107,7 +21,6 @@ string testKey(vector<tuple<char, int, int>> key, string ciphertxt) {
 		return "This candidate is not the correct plaintext";
 	}
 
-	//int totA = count(key.begin(), key.end(), 'a');
 	return deciphered;
 }
 
@@ -170,14 +83,6 @@ std::vector<tuple<char, int, int>> reverseGenKeyspace(string s, string ciphertxt
 	sort(keyspace.begin(), keyspace.end());
 	keyspace.erase(unique(keyspace.begin(), keyspace.end()), keyspace.end());
 
-	//test
-	////tuple<char, int, int> pointer;
-	////for (int i = 0; i < keyspace.size(); i++) {
-	////	pointer = keyspace.at(i);
-	////	cout << get<0>(pointer) << ", ";
-	////	cout << get<1>(pointer) << " enciphered as ";
-	////	cout << get<2>(pointer) << "\n";
-	////}
 
 	sort(keyspace.begin(), keyspace.end());
 	keyspace.erase(unique(keyspace.begin(), keyspace.end()), keyspace.end());
@@ -207,22 +112,16 @@ int main() {
 
 	//apply ciphertext to all keyspaces generated to generate 5 keys
 			//std::multimap<char, int> key1 = reverseGenKey(keyS1, ciphertext);
-	string generatedPlaintext1 = testKey(keyS1, ciphertext);
-	string generatedPlaintext2 = testKey(keyS2, ciphertext);
-	string generatedPlaintext3 = testKey(keyS3, ciphertext);
-	string generatedPlaintext4 = testKey(keyS4, ciphertext);
-	string generatedPlaintext5 = testKey(keyS5, ciphertext);
-	cout << "\ncandidate1: " << generatedPlaintext1;
-	cout << "\ncandidate2: " << generatedPlaintext2;
-	cout << "\ncandidate3: " << generatedPlaintext3;
-	cout << "\ncandidate4: " << generatedPlaintext4;
-	cout << "\ncandidate5: " << generatedPlaintext5;
+	string generatedPlaintext1 = testKey(keyS1);
+	string generatedPlaintext2 = testKey(keyS2);
+	string generatedPlaintext3 = testKey(keyS3);
+	string generatedPlaintext4 = testKey(keyS4);
+	string generatedPlaintext5 = testKey(keyS5);
 
-	//Decrypt
-	//apply all 5 keys to ciphertext and see which has most coherent output
+	cout << candidate1 << "\ncandidate1: " << generatedPlaintext1 << "\n\n";
+	cout << candidate2 << "\ncandidate2: " << generatedPlaintext2 << "\n\n";
+	cout << candidate3 << "\ncandidate3: " << generatedPlaintext3 << "\n\n";
+	cout << candidate4 << "\ncandidate4: " << generatedPlaintext4 << "\n\n";
+	cout << candidate5 << "\ncandidate5: " << generatedPlaintext5 << "\n\n";
 
-
-
-	//Print output: (plaintext)
-	//cout << "Plaintext: " << plaintext << endl;
 }
