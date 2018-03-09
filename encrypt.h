@@ -17,7 +17,7 @@ typedef std::multimap<const char, int>::iterator keymapItr;
 //Generates a keymap 
 void genKey(keymap* key);
 
-void encryptString(const std::string& toEncrypt, keymap* key);
+void encryptString(std::string& ciphertext, const std::string& plaintext, keymap* key);
 
 //Prints the keymap
 void printKeyMap(keymap* key);

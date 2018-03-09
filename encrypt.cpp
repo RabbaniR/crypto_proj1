@@ -105,9 +105,7 @@ void genKey(keymap* key) {
 	}
 }
 
-void encryptString(const string& plaintext, keymap* key) {
-	//encrypt using key & build encrypted input
-	string ciphertext;
+void encryptString(string& ciphertext, const string& plaintext, keymap* key) {
 	for (int i = 0; i < plaintext.size(); i++) {
 		//character iterator
 		char c = plaintext[i];
@@ -124,24 +122,12 @@ void encryptString(const string& plaintext, keymap* key) {
 			//cout << ' ' << chosenEncryption;
 		}
 
-		//cout << "chosen val: " << chosenEncryption << '\n';
-
 		//build encrypted string
 		ciphertext += to_string(chosenEncryption) + ",";
-
-		//cout << c << i << "\n";
 	}
 
     //Delete the last comma at the end of the ciphertext
     ciphertext.erase(ciphertext.size()-1);
-
-    //Print plain and ciphertext
-	cout << plaintext << "\n\n";
-	cout << ciphertext << "\n\n";
-	//ofstream myfile("encrypted.txt", ios_base::app);
-	//myfile << plaintext << "\n";
-	//myfile << ciphertext << "\n\n";
-	//myfile.close();
 }
 
 void printKeyMap(keymap* key){
