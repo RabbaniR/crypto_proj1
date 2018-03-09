@@ -16,8 +16,8 @@ const string candidate5 = "mammate punners octette asylum nonclinically trotters
 
 
 int main(int argc, char* argv[]){
+    string ciphertext, plaintext;
     if(argc <= 1){  //No input arguements
-        string ciphertext, plaintext;
 
         //Get input: (ciphertext)
         cout << "Enter the ciphertext: ";
@@ -42,25 +42,37 @@ int main(int argc, char* argv[]){
 
             switch(test){
                 case 1:
-                    encryptString(candidate1, &keyMap);
+                    encryptString(ciphertext, candidate1, &keyMap);
+                    cout << "Plaintext: " << endl << candidate1 << endl;
                     break;
                 case 2:
-                    encryptString(candidate2, &keyMap);
+                    encryptString(ciphertext, candidate2, &keyMap);
+                    cout << "Plaintext: " << endl << candidate2 << endl;
+
                     break;
                 case 3:
-                    encryptString(candidate3, &keyMap);
+                    encryptString(ciphertext, candidate3, &keyMap);
+                    cout << "Plaintext: " << endl << candidate3 << endl;
+
                     break;
                 case 4:
-                    encryptString(candidate4, &keyMap);
+                    encryptString(ciphertext, candidate4, &keyMap);
+                    cout << "Plaintext: " << endl << candidate4 << endl;
+
                     break;
                 case 5:
-                    encryptString(candidate5, &keyMap);
+                    encryptString(ciphertext, candidate5, &keyMap);
+                    cout << "Plaintext: " << endl << candidate5 << endl;
+
                     break;
                 default:
                     //Do nothing
                     cout << "Choose a number between 1~5" <<endl;
                     break;
             }
+
+            cout << "Ciphertext: " << endl << ciphertext << endl;
+
         }
     }
 }
