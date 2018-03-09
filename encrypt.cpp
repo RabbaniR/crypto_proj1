@@ -1,7 +1,7 @@
 #include "encrypt.h"
 using namespace std;
 
-void genKey(keymap* key) {
+void genKey(keymap* key, char* valArr) {
 	//key skeleton
 	vector<int> nums;
 	for (int i = 0; i < 106; i++) {
@@ -102,6 +102,7 @@ void genKey(keymap* key) {
 			letterBeingMapped = 'z';
 		}
 		key->insert(pair<const char, int>((const char)letterBeingMapped, randomlySelected));
+        valArr[randomlySelected] = letterBeingMapped;
 	}
 }
 
@@ -132,7 +133,13 @@ void encryptString(string& ciphertext, const string& plaintext, keymap* key) {
 
 void printKeyMap(keymap* key){
     for (keymapItr it = key->begin(); it != key->end(); ++it) {
-		cout << "  [" << it->first << ", " << it->second << "]" << endl;
+		cout << "[" << it->first << ", " << it->second << "]" << endl;
 		//myfile  << "  [" << it->first << ", " << it->second << "], ";
 	}
+}
+
+void printValMap(char* valMap){
+    for(int i = 0; i < 106; i ++){
+        cout << '[' << valMap[i]<< " , " << i << ']' << endl;
+    }
 }
