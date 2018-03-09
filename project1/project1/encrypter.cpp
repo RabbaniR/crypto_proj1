@@ -185,7 +185,7 @@ bool encryptDriver(string candidates[]) {
 	return 0;
 }
 
-int main()
+int mainp()
 {
 
 
@@ -212,7 +212,7 @@ int main()
 
 
 
-
+	return 0;
 
 }
 

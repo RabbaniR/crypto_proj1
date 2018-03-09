@@ -32,6 +32,9 @@
     <ClCompile Include="encrypter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="decrypter_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\test1_candidate_5_plaintexts.txt">

@@ -151,6 +151,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="decrypter_1.cpp" />
     <ClCompile Include="encrypter.cpp" />
     <ClCompile Include="project1.cpp" />
     <ClCompile Include="stdafx.cpp">
