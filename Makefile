@@ -1,4 +1,4 @@
-PROG = <Kim><Rabbani><Walker>
+PROG = Kim-Rabbani-Walker
 CC = g++
 CPPFLAGS = -g -Wall -std=c++11
 OBJS = main.o encrypt.o decrypt.o
