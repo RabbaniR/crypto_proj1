@@ -151,7 +151,7 @@ void encrypt(string toEncrypt, multimap<const char, int> key) {
 	}
 	std::cout << toEncrypt << "\n\n";
 	std::cout << excryptedInput << "\n\n";
-	ofstream myfile("encrypted.txt", std::ios_base::app);
+	ofstream myfile("encrypted_2.txt", std::ios_base::app);
 	myfile << toEncrypt << "\n";
 	myfile << excryptedInput << "\n\n";
 	myfile.close();
@@ -185,7 +185,7 @@ bool encryptDriver(string candidates[]) {
 	return 0;
 }
 
-int mainp()
+int mainP()
 {
 
 

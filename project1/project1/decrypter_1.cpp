@@ -29,10 +29,7 @@ std::vector<tuple<char, int, int>> reverseGenKeyspace(string s, string ciphertxt
 		std::string delimiter = ",";
 		size_t pos = 0;
 		std::string token;
-	//	while ((pos = ciphertxt.find(delimiter)) != std::string::npos) {
-	//		char currentChar = get<0>(keyspace[i]);
-	//		token = ciphertxt.substr(0, pos);
-	//	}
+
 	for (int i = 0; i < s.size(); i++) {
 		//
 		if (((pos = ciphertxt.find(delimiter)) == std::string::npos)) {
@@ -83,10 +80,6 @@ std::vector<tuple<char, int, int>> reverseGenKeyspace(string s, string ciphertxt
 	sort(keyspace.begin(), keyspace.end());
 	keyspace.erase(unique(keyspace.begin(), keyspace.end()), keyspace.end());
 
-
-	sort(keyspace.begin(), keyspace.end());
-	keyspace.erase(unique(keyspace.begin(), keyspace.end()), keyspace.end());
-
 	return keyspace;
 }
 
@@ -97,7 +90,7 @@ int main() {
 	cout << "Enter the ciphertext: ";
 	cin >> ciphertext;
 
-	//for each plaintext, try to backwards build the key using the scheduling algorithm
+
 	std::string candidate1 = "dipped ligatured cannier cohabitation cuddling coiffeuses pursuance roper eternizes nullo framable paddlings femur bebop demonstrational tuberculoid theocracy women reappraise oblongatae aphasias loftiness consumptive lip neurasthenically dutchmen grift discredited resourcefulness malfeasants swallowed jogger sayable lewder editorials demimondaine tzaritza arrogations wish indisputable reproduces hygrometries gamuts alight borderlines draggle reconsolidated anemometer rowels staggerers grands nu";
 	std::string candidate2 = "rereads predestines equippers cavitation bimolecular lucubrations cabin bettas quiverer prussians cosigner dressier bended dethronement inveigled davenport establish ganges rebroadcast supered bastiles willable abetted motionlessness demonic flatter bunyan securely tippiest tongue aw cotyledonal roomettes underlies miffs inducement overintellectually fertilize spasmodic bacchanal birdbrains decoct snakebite galliard boson headmistress unextended provence weakling pirana fiend lairds argils comma";
 	std::string candidate3 = "trawling responsiveness tastiest pulsed restamps telescoping pneuma lampoonist divas theosophists pustules checkrowed compactor conditionals envy hairball footslogs wasteful conjures deadfall stagnantly procure barked balmier bowery vagary beaten capitalized undersized towpath envisages thermoplastic rationalizers professions workbench underarm trudger icicled incisive oilbirds citrins chambrays ungainliness weazands prehardened dims determinants fishskin cleanable henceforward misarranges fine ";
@@ -110,8 +103,7 @@ int main() {
 	std::vector<tuple<char, int, int>> keyS4 = reverseGenKeyspace(candidate4, ciphertext);
 	std::vector<tuple<char, int, int>> keyS5 = reverseGenKeyspace(candidate5, ciphertext);
 
-	//apply ciphertext to all keyspaces generated to generate 5 keys
-			//std::multimap<char, int> key1 = reverseGenKey(keyS1, ciphertext);
+
 	string generatedPlaintext1 = testKey(keyS1);
 	string generatedPlaintext2 = testKey(keyS2);
 	string generatedPlaintext3 = testKey(keyS3);
@@ -124,4 +116,5 @@ int main() {
 	cout << candidate4 << "\ncandidate4: " << generatedPlaintext4 << "\n\n";
 	cout << candidate5 << "\ncandidate5: " << generatedPlaintext5 << "\n\n";
 
+	return 0;
 }
