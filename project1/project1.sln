@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "project1", "project1\project1.vcxproj", "{B2B6EB59-C756-4F3F-8951-77232523A2E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6E0F082-0790-49BA-A233-FC242A13DD3E}"
+	ProjectSection(SolutionItems) = preProject
+		test1_candidate_5_plaintexts.txt = test1_candidate_5_plaintexts.txt
+		test2_candidate_20_english_words.txt = test2_candidate_20_english_words.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Debug|x64.ActiveCfg = Debug|x64
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Debug|x64.Build.0 = Debug|x64
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Debug|x86.ActiveCfg = Debug|Win32
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Debug|x86.Build.0 = Debug|Win32
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Release|x64.ActiveCfg = Release|x64
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Release|x64.Build.0 = Release|x64
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Release|x86.ActiveCfg = Release|Win32
+		{B2B6EB59-C756-4F3F-8951-77232523A2E0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3183086-3D0D-4F91-B4E2-648F001EF3CD}
+	EndGlobalSection
+EndGlobal
