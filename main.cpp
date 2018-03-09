@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-
+#include<vector>
 #include "encrypt.h"
 #include "decrypt.h"
 using namespace std;
@@ -17,13 +17,24 @@ const string candidate5 = "mammate punners octette asylum nonclinically trotters
 
 int main(int argc, char* argv[]){
     string ciphertext, plaintext;
-    if(argc <= 1){  //No input arguements
 
+    //Keymap and value map
+    keymap keyMap;      //Each key (char) assigned num [0~105]
+    char valueMap[106]; //Each index [0~105] assigned the char
+
+    //Generate keymap
+    genKey(&keyMap, valueMap);
+    //Print key list and value map
+    //printKeyMap(&keyMap);
+    //printValMap(valueMap);
+    
+    if(argc <= 1){  //No input arguements
         //Get input: (ciphertext)
         cout << "Enter the ciphertext: ";
         cin >> ciphertext;
 
         //Decrypt
+        decryptString(plaintext, ciphertext, valueMap);
 
         //Print output: (plaintext)
         cout << "Plaintext: " << plaintext << endl;
@@ -32,13 +43,6 @@ int main(int argc, char* argv[]){
         if(argc == 2){
             //Input arguement has to be a number
             int test = stoi(argv[1]);
-
-            //Keymap
-            keymap keyMap;
-            //Generate keymap
-            genKey(&keyMap);
-
-            printKeyMap(&keyMap);
 
             switch(test){
                 case 1:
@@ -73,6 +77,9 @@ int main(int argc, char* argv[]){
 
             cout << "Ciphertext: " << endl << ciphertext << endl;
 
+            decryptString(plaintext, ciphertext, valueMap);
+
+            cout << "Decrypted plaintext: " << endl << plaintext << endl;
         }
     }
 }
