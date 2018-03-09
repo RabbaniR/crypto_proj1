@@ -105,7 +105,7 @@ void genKey(keymap* key) {
 	}
 }
 
-void encryptString(string& toEncrypt, keymap* key) {
+void encryptString(const string& toEncrypt, keymap* key) {
 	//encrypt using key & build encrypted input
 	string excryptedInput = "";
 	for (int i = 0; i < toEncrypt.size(); i++) {
@@ -133,25 +133,25 @@ void encryptString(string& toEncrypt, keymap* key) {
 	}
 	cout << toEncrypt << "\n\n";
 	cout << excryptedInput << "\n\n";
-	ofstream myfile("encrypted.txt", ios_base::app);
-	myfile << toEncrypt << "\n";
-	myfile << excryptedInput << "\n\n";
-	myfile.close();
+	//ofstream myfile("encrypted.txt", ios_base::app);
+	//myfile << toEncrypt << "\n";
+	//myfile << excryptedInput << "\n\n";
+	//myfile.close();
 }
 
 
 bool encryptDriver(string candidates[], keymap* key) {
-	ofstream myfile("encrypted.txt", ios_base::app);
+	//ofstream myfile("encrypted.txt", ios_base::app);
 
 	//cout << "Is map empty?" << key.empty();
 	//DEBUG purposes, outputs the full key
 	for (keymapItr it = key->begin(); it != key->end(); ++it) {
 		cout << "  [" << it->first << ", " << it->second << "]" << endl;
-		myfile  << "  [" << it->first << ", " << it->second << "], ";
+		//myfile  << "  [" << it->first << ", " << it->second << "], ";
 
 	}
-	myfile << "\n";
-	myfile.close();
+	//myfile << "\n";
+	//myfile.close();
 
 	string currentCandidate;
 	//cout << sizeof(candidates);
@@ -163,4 +163,11 @@ bool encryptDriver(string candidates[], keymap* key) {
 	}
 
 	return 0;
+}
+
+void printKeyMap(keymap* key){
+    for (keymapItr it = key->begin(); it != key->end(); ++it) {
+		cout << "  [" << it->first << ", " << it->second << "]" << endl;
+		//myfile  << "  [" << it->first << ", " << it->second << "], ";
+	}
 }
