@@ -29,5 +29,38 @@ int main(int argc, char* argv[]){
         cout << "Plaintext: " << plaintext << endl;
     }
     else{   //Input arguements
+        if(argc == 2){
+            //Input arguement has to be a number
+            int test = stoi(argv[1]);
+
+            //Keymap
+            keymap keyMap;
+            //Generate keymap
+            genKey(&keyMap);
+
+            printKeyMap(&keyMap);
+
+            switch(test){
+                case 1:
+                    encryptString(candidate1, &keyMap);
+                    break;
+                case 2:
+                    encryptString(candidate2, &keyMap);
+                    break;
+                case 3:
+                    encryptString(candidate3, &keyMap);
+                    break;
+                case 4:
+                    encryptString(candidate4, &keyMap);
+                    break;
+                case 5:
+                    encryptString(candidate5, &keyMap);
+                    break;
+                default:
+                    //Do nothing
+                    cout << "Choose a number between 1~5" <<endl;
+                    break;
+            }
+        }
     }
 }
