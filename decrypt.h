@@ -5,6 +5,7 @@
 #include <tuple>
 #include <string>
 #include <sstream>
+#include <vector>
 #include <algorithm>
 
 
@@ -18,6 +19,8 @@ void countKeyFreq(int* keyFreq, const std::string& ciphertext);
 
 int findKeyPos(char c, int i);
 
+bool testKey(std::vector<revKey>& vecRevKey, const std::string& candidate);
+
 //Reverse generate keyspace
-void reverseGenKeyspace(const std::string& plaintext, std::string& ciphertext);
+void reverseGenKeyspace(std::vector<revKey>& vecRevKey, const std::string& plaintext, std::string& ciphertext);
 #endif  /* decrypt_h */

@@ -28,9 +28,9 @@ int main(int argc, char* argv[]){
     genKey(&keyMap, valueMap);
     //Print key list and value map
     //printKeyMap(&keyMap);
-    printValMap(valueMap);
+    //printValMap(valueMap);
 
-    tuple_element<int, int, char> hi;
+    vector<revKey> keyS1, keyS2, keyS3, keyS4, keyS5;
     
 
     if(argc <= 1){  //No input arguements
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]){
         cin >> ciphertext;
 
         //Freq analysis
-        countKeyFreq(freqArr, ciphertext);
+        //countKeyFreq(freqArr, ciphertext);
         //Decrypt
         decryptString(plaintext, ciphertext, valueMap);
 
@@ -101,7 +101,18 @@ int main(int argc, char* argv[]){
             // countKeyFreq(freqArr, ciphertext);
             //Decrypt
             // decryptString(plaintext, ciphertext, valueMap);
-            reverseGenKeyspace(candidate1, ciphertext);
+            reverseGenKeyspace(keyS1, candidate1, ciphertext);
+            reverseGenKeyspace(keyS2, candidate2, ciphertext);
+            reverseGenKeyspace(keyS3, candidate3, ciphertext);
+            reverseGenKeyspace(keyS4, candidate4, ciphertext);
+            reverseGenKeyspace(keyS5, candidate5, ciphertext);
+
+            bool test1 = testKey(keyS1, candidate1);
+            bool test2 = testKey(keyS2, candidate2);
+            bool test3 = testKey(keyS3, candidate3);
+            bool test4 = testKey(keyS4, candidate4);
+            bool test5 = testKey(keyS5, candidate5);
+
             cout << "Decrypted plaintext: " << endl << plaintext << endl;
         }
     }
