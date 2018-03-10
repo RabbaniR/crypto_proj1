@@ -21,18 +21,21 @@ int main(int argc, char* argv[]){
     //Keymap and value map
     keymap keyMap;      //Each key (char) assigned num [0~105]
     char valueMap[106]; //Each index [0~105] assigned the char
+    int freqArr[106] = {0};   //Count occurrences of the keyspace
 
     //Generate keymap
     genKey(&keyMap, valueMap);
     //Print key list and value map
     //printKeyMap(&keyMap);
-    //printValMap(valueMap);
-    
+    printValMap(valueMap);
+
     if(argc <= 1){  //No input arguements
         //Get input: (ciphertext)
         cout << "Enter the ciphertext: ";
         cin >> ciphertext;
 
+        //Freq analysis
+        countKeyFreq(freqArr, ciphertext);
         //Decrypt
         decryptString(plaintext, ciphertext, valueMap);
 
@@ -40,11 +43,17 @@ int main(int argc, char* argv[]){
         cout << "Plaintext: " << plaintext << endl;
     }
     else{   //Input arguements
+        //argv[1] = Chooses which test (either 1 or 2)
         if(argc == 2){
             //Input arguement has to be a number
             int test = stoi(argv[1]);
+            //Perform test 1
+            if(test == 1){
+                int choice;
+                cout << "Choose plaintext candidate (1~5): ";
+                cin >> choice;
 
-            switch(test){
+                switch(choice){
                 case 1:
                     encryptString(ciphertext, candidate1, &keyMap);
                     cout << "Plaintext: " << endl << candidate1 << endl;
@@ -73,10 +82,20 @@ int main(int argc, char* argv[]){
                     //Do nothing
                     cout << "Choose a number between 1~5" <<endl;
                     break;
+                }
+            }
+            else if(test == 2){
+                //Perform test 2
+            }
+            else{
+                cout << "Only two tests." << endl;
             }
 
             cout << "Ciphertext: " << endl << ciphertext << endl;
 
+            //Freq analysis
+            countKeyFreq(freqArr, ciphertext);
+            //Decrypt
             decryptString(plaintext, ciphertext, valueMap);
 
             cout << "Decrypted plaintext: " << endl << plaintext << endl;
