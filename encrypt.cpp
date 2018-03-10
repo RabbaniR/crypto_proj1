@@ -133,13 +133,13 @@ void encryptString(string& ciphertext, const string& plaintext, keymap* key) {
 
 void printKeyMap(keymap* key){
     for (keymapItr it = key->begin(); it != key->end(); ++it) {
-		cout << "[" << it->first << ", " << it->second << "]" << endl;
+		cout << it->first << ',' << it->second << endl;
 		//myfile  << "  [" << it->first << ", " << it->second << "], ";
 	}
 }
 
 void printValMap(char* valMap){
     for(int i = 0; i < 106; i ++){
-        cout << '[' << valMap[i]<< " , " << i << ']' << endl;
+        cout << valMap[i]<< ',' << i << endl;
     }
 }
