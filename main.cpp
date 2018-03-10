@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<tuple>
 #include "encrypt.h"
 #include "decrypt.h"
 using namespace std;
@@ -28,6 +29,9 @@ int main(int argc, char* argv[]){
     //Print key list and value map
     //printKeyMap(&keyMap);
     printValMap(valueMap);
+
+    tuple_element<int, int, char> hi;
+    
 
     if(argc <= 1){  //No input arguements
         //Get input: (ciphertext)
@@ -94,10 +98,10 @@ int main(int argc, char* argv[]){
             cout << "Ciphertext: " << endl << ciphertext << endl;
 
             //Freq analysis
-            countKeyFreq(freqArr, ciphertext);
+            // countKeyFreq(freqArr, ciphertext);
             //Decrypt
-            decryptString(plaintext, ciphertext, valueMap);
-
+            // decryptString(plaintext, ciphertext, valueMap);
+            reverseGenKeyspace(candidate1, ciphertext);
             cout << "Decrypted plaintext: " << endl << plaintext << endl;
         }
     }
