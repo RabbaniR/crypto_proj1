@@ -7,12 +7,14 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-
+#include <ctime> 
 
 typedef std::tuple<char, int, int> revKey;
 
+bool decryptLoop(std::string& plaintext, std::string& ciphertext, char* valArr);
+
 //Decrypts the ciphertext and stores it into the plaintext
-void decryptString(std::string& plaintext, std::string& ciphertext, char* valArr);
+bool decryptString(std::string& plaintext, std::string& ciphertext, char* valArr);
 
 //Counts the frequency of each key
 void countKeyFreq(int* keyFreq, const std::string& ciphertext);

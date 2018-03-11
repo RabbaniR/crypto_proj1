@@ -13,8 +13,6 @@ const string candidate3 = "trawling responsiveness tastiest pulsed restamps tele
 const string candidate4 = "dean iller playbooks resource anesthetic credibilities nonplus tzetzes incursions stooged envelopments girdling risibility thrum repeaters catheterizing misbestowed cursing malingerers ensconces lippiest accost superannuate slush opinionated rememberer councils mishandling drivels juryless slashers tangent roistering scathing apprenticing fleabite sault achier quantize registrable nobbler sheaf natantly kashmirs dittoes scanned emissivity iodize dually refunded portliest setbacks eureka needines";
 const string candidate5 = "mammate punners octette asylum nonclinically trotters slant collocation cardiology enchants ledge deregulated bottommost capsulate biotechnologies subtended cloddiest training joneses catafalque fieldmice hostels affect shrimper differentiations metacarpus amebas sweeter shiatsu oncoming tubeless menu professing apostatizing moreover eumorphic casked euphemistically programmability campaniles chickpea inactivates crossing defoggers reassures tableland doze reassembled striate precocious noncomba";
 
-//For Test 2
-
 
 int main(int argc, char* argv[]){
     string ciphertext, plaintext;
@@ -22,12 +20,11 @@ int main(int argc, char* argv[]){
     //Keymap and value map
     keymap keyMap;      //Each key (char) assigned num [0~105]
     char valueMap[106]; //Each index [0~105] assigned the char
-    int freqArr[106] = {0};   //Count occurrences of the keyspace
 
     //Generate keymap
     genKey(&keyMap, valueMap);
     //Print key list and value map
-    //printKeyMap(&keyMap);
+    printKeyMap(&keyMap);
     //printValMap(valueMap);
 
     vector<revKey> keyS1, keyS2, keyS3, keyS4, keyS5;
@@ -41,10 +38,15 @@ int main(int argc, char* argv[]){
         //Freq analysis
         //countKeyFreq(freqArr, ciphertext);
         //Decrypt
-        decryptString(plaintext, ciphertext, valueMap);
-
-        //Print output: (plaintext)
-        cout << "Plaintext: " << plaintext << endl;
+        bool result = decryptLoop(plaintext, ciphertext, valueMap);
+        if(result){
+            //Print output: (plaintext)
+            cout << "Plaintext: " << plaintext << endl;
+        }
+        else{
+            cout << "Could not decrypt" << endl;
+        }
+        
     }
     else{   //Input arguements
         //argv[1] = Chooses which test (either 1 or 2)
@@ -90,6 +92,8 @@ int main(int argc, char* argv[]){
             }
             else if(test == 2){
                 //Perform test 2
+                string test2 = "rereads predestines equippers cavitation";
+                encryptString(ciphertext, test2, &keyMap);
             }
             else{
                 cout << "Only two tests." << endl;
@@ -100,18 +104,18 @@ int main(int argc, char* argv[]){
             //Freq analysis
             // countKeyFreq(freqArr, ciphertext);
             //Decrypt
-            // decryptString(plaintext, ciphertext, valueMap);
-            reverseGenKeyspace(keyS1, candidate1, ciphertext);
-            reverseGenKeyspace(keyS2, candidate2, ciphertext);
-            reverseGenKeyspace(keyS3, candidate3, ciphertext);
-            reverseGenKeyspace(keyS4, candidate4, ciphertext);
-            reverseGenKeyspace(keyS5, candidate5, ciphertext);
+            decryptString(plaintext, ciphertext, valueMap);
+            // reverseGenKeyspace(keyS1, candidate1, ciphertext);
+            // reverseGenKeyspace(keyS2, candidate2, ciphertext);
+            // reverseGenKeyspace(keyS3, candidate3, ciphertext);
+            // reverseGenKeyspace(keyS4, candidate4, ciphertext);
+            // reverseGenKeyspace(keyS5, candidate5, ciphertext);
 
-            bool test1 = testKey(keyS1, candidate1);
-            bool test2 = testKey(keyS2, candidate2);
-            bool test3 = testKey(keyS3, candidate3);
-            bool test4 = testKey(keyS4, candidate4);
-            bool test5 = testKey(keyS5, candidate5);
+            // bool test1 = testKey(keyS1, candidate1);
+            // bool test2 = testKey(keyS2, candidate2);
+            // bool test3 = testKey(keyS3, candidate3);
+            // bool test4 = testKey(keyS4, candidate4);
+            // bool test5 = testKey(keyS5, candidate5);
 
             cout << "Decrypted plaintext: " << endl << plaintext << endl;
         }

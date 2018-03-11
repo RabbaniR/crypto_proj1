@@ -1,23 +1,59 @@
 #include "decrypt.h"
+#include "encrypt.h"
 using namespace std;
 
-void decryptString(string& plaintext, string& ciphertext, char* valArr){
+
+//For Test 2
+const vector<string> engWords = {"rereads","predestines","equippers","cavitation","bimolecular","lucubrations","cabin","bettas","quiverer","prussians","cosigner","dressier","bended","dethronement","inveigled","davenport","establish","ganges","rebroadcast","supered","bastiles","willable","abetted","motionlessness","demonic","flatter","bunyan","securely","tippiest","tongue","aw","cotyledonal","roomettes","underlies","miffs","inducement","overintellectually","fertilize","spasmodic","bacchanal","birdbrains","decoct","snakebite","galliard","boson","headmistress","unextended","provence","weakling","pirana","fiend","lairds","argils","comma"};
+
+bool decryptLoop(string& plaintext, string& ciphertext, char* valArr){
+    time_t startTime = time(nullptr);
+    time_t endTime = time(nullptr);
+    bool status = false;
+    while(!status){
+        status = decryptString(plaintext, ciphertext, valArr);
+        keymap keyMap;
+        char valMap[106];
+        genKey(&keyMap, valMap);
+        endTime = time(nullptr);
+        uint elapsedTime = difftime(endTime, startTime);
+        if(elapsedTime >= 10){
+            return false;
+        }
+    }
+    return true;
+}
+bool decryptString(string& plaintext, string& ciphertext, char* valArr){
     //Read ciphertext
     istringstream cipherStream(ciphertext);
     string encryptedChar;
     char del = ',';
+    string searchWord;
     while(getline(cipherStream, encryptedChar, del)){
         //cout << encryptedChar << ',';
         int charNum = stoi(encryptedChar);
         if(charNum >= 0 && charNum <= 105){ //Valid key
-            //Lookup key in value array
             plaintext += valArr[charNum];
+            // cout << plaintext << endl;
+            //Lookup key in value array
+            if(valArr[charNum] == ' '){
+                // cout << "Search: " << searchWord << endl;
+                if(find(engWords.begin(), engWords.end(), searchWord) == engWords.end()){
+                    return false;
+                    // cout << "No words found" << endl;
+                }
+                searchWord = "";
+            }
+            else{
+                searchWord += valArr[charNum];
+            }
         }
         else{
             cerr << "Invalid key" << endl;
             exit(-1);
         }
     }
+    return true;
 }
 
 void countKeyFreq(int* keyFreq, const string& ciphertext){
