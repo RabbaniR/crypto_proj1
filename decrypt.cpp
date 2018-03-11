@@ -2,8 +2,7 @@
 #include "encrypt.h"
 using namespace std;
 
-
-//For Test 2
+//English dictionary (Test 2)
 const vector<string> engWords = {"rereads","predestines","equippers","cavitation","bimolecular","lucubrations","cabin","bettas","quiverer","prussians","cosigner","dressier","bended","dethronement","inveigled","davenport","establish","ganges","rebroadcast","supered","bastiles","willable","abetted","motionlessness","demonic","flatter","bunyan","securely","tippiest","tongue","aw","cotyledonal","roomettes","underlies","miffs","inducement","overintellectually","fertilize","spasmodic","bacchanal","birdbrains","decoct","snakebite","galliard","boson","headmistress","unextended","provence","weakling","pirana","fiend","lairds","argils","comma"};
 
 bool decryptLoop(string& plaintext, string& ciphertext, char* valArr){
@@ -17,7 +16,7 @@ bool decryptLoop(string& plaintext, string& ciphertext, char* valArr){
         genKey(&keyMap, valMap);
         endTime = time(nullptr);
         uint elapsedTime = difftime(endTime, startTime);
-        if(elapsedTime >= 10){
+        if(elapsedTime >= 180){ //3 minutes
             return false;
         }
     }
@@ -56,31 +55,6 @@ bool decryptString(string& plaintext, string& ciphertext, char* valArr){
     return true;
 }
 
-void countKeyFreq(int* keyFreq, const string& ciphertext){
-   //Read ciphertext
-    istringstream cipherStream(ciphertext);
-    string encryptedChar;
-    char del = ',';
-    while(getline(cipherStream, encryptedChar, del)){
-        //cout << encryptedChar << ',';
-        int charNum = stoi(encryptedChar);
-        if(charNum >= 0 && charNum <= 105){ //Valid key
-            //Lookup key in value array
-            keyFreq[charNum] += 1;
-        }
-        else{
-            cerr << "Invalid key" << endl;
-            exit(-1);
-        }
-    }
-
-    //DEBUG: Print out int array
-    for(int i = 0; i < 106; i++){
-        cout << i << ',' << keyFreq[i] << endl;
-    }
-    cout << endl;
-}
-
 int findKeyPos(char c, int i){
     //char c: character of the plaintext at index i
     //int i: index of the plaintext
@@ -116,15 +90,9 @@ int findKeyPos(char c, int i){
     return keyIndex;
 }
 
-bool testKey(vector<revKey>& vecRevKey, const string& candidate){
+bool testKey(vector<revKey>& vecRevKey){
     int size = vecRevKey.size();
-    if(size > 106){
-        return false;
-    }
-    else{
-        cout << "Plaintext:\n" << candidate << endl;
-        return true;
-    }
+    return (size > 106) ? false : true;
 }
 
 void reverseGenKeyspace(vector<revKey>& vecRevKey, const string& plaintext, string& ciphertext){

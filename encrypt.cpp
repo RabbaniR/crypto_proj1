@@ -122,11 +122,9 @@ void encryptString(string& ciphertext, const string& plaintext, keymap* key) {
 			chosenEncryption = ret->second;
 			//cout << ' ' << chosenEncryption;
 		}
-
 		//build encrypted string
 		ciphertext += to_string(chosenEncryption) + ",";
 	}
-
     //Delete the last comma at the end of the ciphertext
     ciphertext.erase(ciphertext.size()-1);
 }
@@ -134,7 +132,6 @@ void encryptString(string& ciphertext, const string& plaintext, keymap* key) {
 void printKeyMap(keymap* key){
     for (keymapItr it = key->begin(); it != key->end(); ++it) {
 		cout << it->first << ',' << it->second << endl;
-		//myfile  << "  [" << it->first << ", " << it->second << "], ";
 	}
 }
 

@@ -13,7 +13,6 @@ const string candidate3 = "trawling responsiveness tastiest pulsed restamps tele
 const string candidate4 = "dean iller playbooks resource anesthetic credibilities nonplus tzetzes incursions stooged envelopments girdling risibility thrum repeaters catheterizing misbestowed cursing malingerers ensconces lippiest accost superannuate slush opinionated rememberer councils mishandling drivels juryless slashers tangent roistering scathing apprenticing fleabite sault achier quantize registrable nobbler sheaf natantly kashmirs dittoes scanned emissivity iodize dually refunded portliest setbacks eureka needines";
 const string candidate5 = "mammate punners octette asylum nonclinically trotters slant collocation cardiology enchants ledge deregulated bottommost capsulate biotechnologies subtended cloddiest training joneses catafalque fieldmice hostels affect shrimper differentiations metacarpus amebas sweeter shiatsu oncoming tubeless menu professing apostatizing moreover eumorphic casked euphemistically programmability campaniles chickpea inactivates crossing defoggers reassures tableland doze reassembled striate precocious noncomba";
 
-
 int main(int argc, char* argv[]){
     string ciphertext, plaintext;
 
@@ -23,20 +22,17 @@ int main(int argc, char* argv[]){
 
     //Generate keymap
     genKey(&keyMap, valueMap);
+    
+    //For debugging:
     //Print key list and value map
-    printKeyMap(&keyMap);
+    //printKeyMap(&keyMap);
     //printValMap(valueMap);
 
-    vector<revKey> keyS1, keyS2, keyS3, keyS4, keyS5;
-    
+    //Get input: (ciphertext)
+    cout << "Enter the ciphertext: ";
+    cin >> ciphertext;
 
     if(argc <= 1){  //No input arguements
-        //Get input: (ciphertext)
-        cout << "Enter the ciphertext: ";
-        cin >> ciphertext;
-
-        //Freq analysis
-        //countKeyFreq(freqArr, ciphertext);
         //Decrypt
         bool result = decryptLoop(plaintext, ciphertext, valueMap);
         if(result){
@@ -46,7 +42,6 @@ int main(int argc, char* argv[]){
         else{
             cout << "Could not decrypt" << endl;
         }
-        
     }
     else{   //Input arguements
         //argv[1] = Chooses which test (either 1 or 2)
@@ -55,69 +50,93 @@ int main(int argc, char* argv[]){
             int test = stoi(argv[1]);
             //Perform test 1
             if(test == 1){
+                /**
+                //Testing Code:
                 int choice;
                 cout << "Choose plaintext candidate (1~5): ";
                 cin >> choice;
 
                 switch(choice){
-                case 1:
-                    encryptString(ciphertext, candidate1, &keyMap);
-                    cout << "Plaintext: " << endl << candidate1 << endl;
-                    break;
-                case 2:
-                    encryptString(ciphertext, candidate2, &keyMap);
-                    cout << "Plaintext: " << endl << candidate2 << endl;
+                    case 1:
+                        encryptString(ciphertext, candidate1, &keyMap);
+                        cout << "Plaintext: " << endl << candidate1 << endl;
+                        break;
+                    case 2:
+                        encryptString(ciphertext, candidate2, &keyMap);
+                        cout << "Plaintext: " << endl << candidate2 << endl;
 
-                    break;
-                case 3:
-                    encryptString(ciphertext, candidate3, &keyMap);
-                    cout << "Plaintext: " << endl << candidate3 << endl;
+                        break;
+                    case 3:
+                        encryptString(ciphertext, candidate3, &keyMap);
+                        cout << "Plaintext: " << endl << candidate3 << endl;
 
-                    break;
-                case 4:
-                    encryptString(ciphertext, candidate4, &keyMap);
-                    cout << "Plaintext: " << endl << candidate4 << endl;
+                        break;
+                    case 4:
+                        encryptString(ciphertext, candidate4, &keyMap);
+                        cout << "Plaintext: " << endl << candidate4 << endl;
 
-                    break;
-                case 5:
-                    encryptString(ciphertext, candidate5, &keyMap);
-                    cout << "Plaintext: " << endl << candidate5 << endl;
+                        break;
+                    case 5:
+                        encryptString(ciphertext, candidate5, &keyMap);
+                        cout << "Plaintext: " << endl << candidate5 << endl;
 
-                    break;
-                default:
-                    //Do nothing
-                    cout << "Choose a number between 1~5" <<endl;
-                    break;
+                        break;
+                    default:
+                        //Do nothing
+                        cout << "Choose a number between 1~5" <<endl;
+                        break;
+                }
+                */
+
+                vector<revKey> keyS1, keyS2, keyS3, keyS4, keyS5;
+
+                reverseGenKeyspace(keyS1, candidate1, ciphertext);
+                reverseGenKeyspace(keyS2, candidate2, ciphertext);
+                reverseGenKeyspace(keyS3, candidate3, ciphertext);
+                reverseGenKeyspace(keyS4, candidate4, ciphertext);
+                reverseGenKeyspace(keyS5, candidate5, ciphertext);
+
+                if(testKey(keyS1)){
+                    cout << "Plaintext: " << candidate1 << endl;
+                }
+                else if(testKey(keyS2)){
+                    cout << "Plaintext: " << candidate2 << endl;
+                }
+                else if(testKey(keyS3)){
+                    cout << "Plaintext: " << candidate3 << endl;
+                }
+                else if(testKey(keyS4)){
+                    cout << "Plaintext: " << candidate4 << endl;
+                }
+                else if(testKey(keyS5)){
+                    cout << "Plaintext: " << candidate5 << endl;
+                }
+                else{
+                    cout << "Could not decrypt" << endl;
                 }
             }
-            else if(test == 2){
-                //Perform test 2
-                string test2 = "rereads predestines equippers cavitation";
-                encryptString(ciphertext, test2, &keyMap);
+            else if(test == 2){ //Perform test 2
+                /**
+                 * string test2 = "rereads predestines equippers cavitation";
+                 * encryptString(ciphertext, test2, &keyMap);
+                 */
+
+                //Decrypt
+                bool result = decryptLoop(plaintext, ciphertext, valueMap);
+                if(result){
+                    //Print output: (plaintext)
+                    cout << "Plaintext: " << plaintext << endl;
+                }
+                else{
+                    cout << "Could not decrypt" << endl;
+                }
             }
             else{
-                cout << "Only two tests." << endl;
+                cout << "Enter 1 to perform test 1 and 2 to perform test 2." << endl;
             }
-
-            cout << "Ciphertext: " << endl << ciphertext << endl;
-
-            //Freq analysis
-            // countKeyFreq(freqArr, ciphertext);
-            //Decrypt
-            decryptString(plaintext, ciphertext, valueMap);
-            // reverseGenKeyspace(keyS1, candidate1, ciphertext);
-            // reverseGenKeyspace(keyS2, candidate2, ciphertext);
-            // reverseGenKeyspace(keyS3, candidate3, ciphertext);
-            // reverseGenKeyspace(keyS4, candidate4, ciphertext);
-            // reverseGenKeyspace(keyS5, candidate5, ciphertext);
-
-            // bool test1 = testKey(keyS1, candidate1);
-            // bool test2 = testKey(keyS2, candidate2);
-            // bool test3 = testKey(keyS3, candidate3);
-            // bool test4 = testKey(keyS4, candidate4);
-            // bool test5 = testKey(keyS5, candidate5);
-
-            cout << "Decrypted plaintext: " << endl << plaintext << endl;
+        }
+        else{
+            cout << "Enter only 1 or 2 as the arguement." << endl;
         }
     }
 }

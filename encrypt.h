@@ -22,4 +22,5 @@ void encryptString(std::string& ciphertext, const std::string& plaintext, keymap
 //Prints the keymap
 void printKeyMap(keymap* key);
 void printValMap(char* valMap);
+
 #endif  /* encrypt_h */

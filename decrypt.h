@@ -11,18 +11,19 @@
 
 typedef std::tuple<char, int, int> revKey;
 
+//Loop for decryptString with different keymap and lookup table
 bool decryptLoop(std::string& plaintext, std::string& ciphertext, char* valArr);
 
 //Decrypts the ciphertext and stores it into the plaintext
 bool decryptString(std::string& plaintext, std::string& ciphertext, char* valArr);
 
-//Counts the frequency of each key
-void countKeyFreq(int* keyFreq, const std::string& ciphertext);
-
+//Find key position using j mod L (Test 1)
 int findKeyPos(char c, int i);
 
-bool testKey(std::vector<revKey>& vecRevKey, const std::string& candidate);
+//Test key to see if it works (Test 1)
+bool testKey(std::vector<revKey>& vecRevKey);
 
-//Reverse generate keyspace
+//Reverse generate keyspace (Test 1)
 void reverseGenKeyspace(std::vector<revKey>& vecRevKey, const std::string& plaintext, std::string& ciphertext);
+
 #endif  /* decrypt_h */
